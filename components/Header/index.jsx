@@ -6,7 +6,9 @@ import { FaSearch } from 'react-icons/fa'
 const Header = () => {
     return (
         <Wrapper>
-            <Logo>Hello</Logo>
+            <a href="/">
+                <Logo>Hello</Logo>
+            </a>
             <Ul> 
                 <Li>
                     <Link href="#">

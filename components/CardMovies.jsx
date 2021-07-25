@@ -38,9 +38,9 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const CardMovies = ({ image_path, title }) => {
+const CardMovies = ({ image_path, title, onClick }) => {
   return (
-    <Card>
+    <Card onClick={onClick}>
       <Image src={image_path} />
       <Text>
         <p style={{ fontFamily: 'Poppins', fontSize: '18px' }}>{title}</p>

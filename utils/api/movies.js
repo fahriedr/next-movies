@@ -17,3 +17,9 @@ export const getTopRatedMovies = async () => {
 
     return res
 }
+
+export const getMovieDetail = async (id) => {
+    const res = await responseAPI('GET', `movie/${id}`)
+
+    return res
+}

@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Logo = styled.h1`
+    color: #000;
 `;
 
 export const Ul = styled.ul`

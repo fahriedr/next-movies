@@ -33,78 +33,99 @@ const BannerDetail = styled.div`
 `;
 
 const ButtonWatch = styled.button`
-	font-family: 'Poppins', sans-serif;
-	border: none;
-	background-color: #e8313c;
-	color: #fff;
-	width: auto;
-	padding: 4px 20px;
-	border-radius: 4px;
-	cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  background-color: #e8313c;
+  color: #fff;
+  width: auto;
+  padding: 4px 20px;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 const ButtonWishlist = styled.button`
-	font-family: 'Poppins', sans-serif;
-	border: 1px solid #fff;
-	background-color: transparent;
-	color: #fff;
-	width: auto;
-	padding: 4px 20px;
-	border-radius: 4px;
-	cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  width: auto;
+  padding: 4px 20px;
+  border-radius: 4px;
+  cursor: pointer;
 
-	:hover {
-		background-color: #fff;
-		color: #e8313c;
-		border: 1px solid #e8313c;
-	}
+  :hover {
+    background-color: #fff;
+    color: #e8313c;
+    border: 1px solid #e8313c;
+  }
 `;
 
 const Banner = ({ data }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-  return (
-    <Slider {...settings}>
-      {data.map((res, index) => {
-        return (
-          <BannerWrapper key={index}>
-            <BannerImage
-              src={`http://image.tmdb.org/t/p/original${res.backdrop_path}`}
-			  onClick={() => alert(res.title ?? res.name)}
-            />
-            <BannerDetail>
-              <h1 style={{ marginBottom: '-15px'}}>{res.title ?? res.name}</h1>
-              <div style={{ display: "flex", alignItems: "center", marginBottom: '-15px' }}>
-                <FaStar
-                  size="20px"
-                  color="yellow"
-                  style={{ marginRight: "6px" }}
-                />
-                <p style={{ marginRight: "8px" }}>{res.vote_average}</p>
-                {/* &#8226; */}
-              </div>
-              <p style={{ marginRight: "8px", fontSize: "12px" }}>
-                {res.overview}
-              </p>
-			  <div style={{ display: 'flex', width: '50%', justifyContent: 'space-between'}}>
-				<ButtonWatch>
-					Watch Now
-				</ButtonWatch>
-				<ButtonWishlist>
-					Add to Wishlist
-				</ButtonWishlist>
-			  </div>
-            </BannerDetail>
-          </BannerWrapper>
-        );
-      })}
-    </Slider>
-  );
+  if (data.length > 1) {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+    return (
+      <Slider {...settings}>
+        {data.map((res, index) => {
+          return (
+            <BannerWrapper key={index}>
+              <BannerImage
+                src={`http://image.tmdb.org/t/p/original${res.backdrop_path}`}
+                onClick={() => alert(res.title ?? res.name)}
+              />
+              <BannerDetail>
+                <h1 style={{ marginBottom: "-15px" }}>
+                  {res.title ?? res.name}
+                </h1>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "-15px",
+                  }}
+                >
+                  <FaStar
+                    size="20px"
+                    color="yellow"
+                    style={{ marginRight: "6px" }}
+                  />
+                  <p style={{ marginRight: "8px" }}>{res.vote_average}</p>
+                  {/* &#8226; */}
+                </div>
+                <p style={{ marginRight: "8px", fontSize: "12px" }}>
+                  {res.overview}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "50%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <ButtonWatch>Watch Now</ButtonWatch>
+                  <ButtonWishlist>Add to Wishlist</ButtonWishlist>
+                </div>
+              </BannerDetail>
+            </BannerWrapper>
+          );
+        })}
+      </Slider>
+    );
+  } else {
+    return (
+      <BannerWrapper>
+        <BannerImage
+          src={`http://image.tmdb.org/t/p/original${data.backdrop_path}`}
+          onClick={() => alert(res.title ?? res.name)}
+        />
+      </BannerWrapper>
+    );
+  }
 };
 
 export default Banner;
