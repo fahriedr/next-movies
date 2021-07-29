@@ -8,22 +8,23 @@ import { getGenre } from "../utils/helpers/global-helpers";
 
 const BannerWrapper = styled.div`
   font-family: "Poppins", sans-serif;
+  display: flex;
 `;
 
 const BannerImage = styled.img`
-  width: 100%;
-  height: 450px;
+  /* width: 70%; */
+  height: 400px;
   cursor: pointer;
 `;
 
 const BannerDetail = styled.div`
-  position: absolute;
+  /* position: absolute; */
   bottom: 120px;
-  margin-left: 50px;
-  width: 600px;
+  padding-left: 50px;
+  /* width: 600px; */
   height: auto;
   justify-content: space-between;
-  background-color: transparent;
+  background-color: #000;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -119,9 +120,33 @@ const Banner = ({ data }) => {
   } else {
     return (
       <BannerWrapper>
+        <BannerDetail>
+          <h1 style={{ marginBottom: "-15px" }}>{data.title ?? data.name}</h1>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "-15px",
+            }}
+          >
+            <FaStar size="20px" color="yellow" style={{ marginRight: "6px" }} />
+            <p style={{ marginRight: "8px" }}>{data.vote_average}</p>
+            {/* &#8226; */}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "50%",
+              justifyContent: "space-between",
+            }}
+          >
+            <ButtonWatch>Watch Now</ButtonWatch>
+            <ButtonWishlist>Add to Wishlist</ButtonWishlist>
+          </div>
+        </BannerDetail>
         <BannerImage
           src={`http://image.tmdb.org/t/p/original${data.backdrop_path}`}
-          onClick={() => alert(res.title ?? res.name)}
+          onClick={() => alert(data.title ?? data.name)}
         />
       </BannerWrapper>
     );

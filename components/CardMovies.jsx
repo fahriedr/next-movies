@@ -6,45 +6,74 @@ const Card = styled.div`
   text-align: center;
   position: relative;
   width: 200px;
+  height: 300px;
+  overflow: hidden;
 `;
 
-const Text = styled.div`
+const TextWrapper = styled.div`
   display: none;
   ${Card}:hover & {
     display: flex;
-    background-color: rgb(0, 0, 0, 0.4);
-    height: 100%;
+    background-color: #fff;
+    height: auto;
     width: 100%;
     position: absolute;
-    top: 0%;
+    bottom: 20px;
     left: 0%;
-    color: #fff;
-    animation: slide-top 0.5s;
     justify-content: center;
     align-items: center;
+    color: #000;
+    animation: slide-top 0.5s;
   }
 
   @keyframes slide-top {
     0% {
-      top: 100%;
+      bottom: 0px;
     }
     100% {
-      top: 0%;
+      bottom: 20px;
     }
   }
 `;
 
 const Image = styled.img`
   width: 100%;
+  height: 300px;
+  position: absolute;
+  animation: zoomout 0.8s;
+
+  ${Card} :hover & {
+    transform: scale(1.1);
+    animation: zooming 0.8s;
+  }
+
+  @keyframes zooming {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes zoomout {
+    0% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 `;
 
 const CardMovies = ({ image_path, title, onClick }) => {
   return (
     <Card onClick={onClick}>
       <Image src={image_path} />
-      <Text>
+      <TextWrapper>
         <p style={{ fontFamily: 'Poppins', fontSize: '18px' }}>{title}</p>
-      </Text>
+      </TextWrapper>
     </Card>
   );
 };
