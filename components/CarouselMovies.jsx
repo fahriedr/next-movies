@@ -30,13 +30,28 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
-const CarouselMovies = ({ title, data, style}) => {
+const CarouselMovies = ({ title, data, style, type}) => {
+
+  let slide
+
+  if( type.mobile == true ) {
+    slide = 2
+  } else if ( type.tablet == true ) {
+    slide = 3
+  } else if ( type.desktop == true ) {
+    slide = 5
+  } else if ( type.bigDesktop == true ) {
+    slide = 7
+  }
+
+  console.log(type)
+
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: slide,
+    slidesToScroll: slide,
   };
 
   const router = useRouter()

@@ -10,7 +10,7 @@ import { responseAPI } from "../utils/helpers/axios-helper";
 import { getNowPlayingMovies, getPopularMovies, getTopRatedMovies } from "../utils/api/movies";
 import CarouselMovies from "../components/CarouselMovies";
 
-export default function Home({ children }) {
+export default function Home({ children, deviceType }) {
 
   const [dataBanner, setDataBanner] = useState([])
   const [popularMovies, setPopularMovies] = useState([])
@@ -68,17 +68,20 @@ export default function Home({ children }) {
       <CarouselMovies
         title="Popular Movies"
         data={popularMovies}
-        style={{margin: '35px 60px', }}
+        style={ deviceType.mobile == true ? { margin: '35px 10px' } : { margin: '35px 60px'}}
+        type={deviceType}
       />
       <CarouselMovies
         title="Now Playing Movies"
         data={nowPlayingMovies}
-        style={{margin: '35px 60px', }}
+        style={ deviceType.mobile == true ? { margin: '35px 10px' } : { margin: '35px 60px'}}
+        type={deviceType}
       />
       <CarouselMovies
         title="Top Rated Movies"
         data={topRatedMovies}
-        style={{margin: '35px 60px', }}
+        style={ deviceType.mobile == true ? { margin: '35px 10px' } : { margin: '35px 60px'}}
+        type={deviceType}
       />
     </ContentLayout>
   );
