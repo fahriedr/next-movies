@@ -1,19 +1,26 @@
-import React, {useContext} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { UserContext } from '../context/userContext'
+import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { UserContext } from "../context/userContext";
+import { useRouter } from "next/router";
 
 const AboutPage = (props) => {
-  const state = useSelector(state => state)
-  const { userState, userDispatch } = useContext(UserContext)
+  const router = useRouter();
 
-  console.log(userState)
-  console.log(state)
+  console.log(router);
+  console.log(props);
 
-    return (
-        <div>
-            <h1>About Page</h1>
-        </div>
-    )
+  return (
+    <div>
+      <h1>About Page</h1>
+    </div>
+  );
+};
+
+export async function getServerSideProps(context) {
+  const id = context.query.id;
+  return {
+    props: { id }, // will be passed to the page component as props
+  };
 }
 
-export default AboutPage
+export default AboutPage;

@@ -3,6 +3,7 @@ import ContentLayout from '../../../layouts/ContentLayout'
 import Banner from '../../../components/Banner'
 import { useRouter } from 'next/router'
 import { getMovieDetail } from '../../../utils/api/movies'
+import SkeletonBanner from "../../../components/Banner/SkeletonBanner";
 
 const MovieDetail = ({res}) => {
 
@@ -22,10 +23,14 @@ const MovieDetail = ({res}) => {
         fetchData()
     }, [router])
 
+    console.log(data)
+
     return (
         <ContentLayout>
-            { data && (
+            { data ? (
                 <Banner data={data}/>
+            ) : (
+                <SkeletonBanner/>
             ) }
         </ContentLayout>
     )

@@ -44,8 +44,6 @@ const CarouselMovies = ({ title, data, style, type}) => {
     slide = 7
   }
 
-  console.log(type)
-
   const settings = {
     dots: true,
     infinite: false,

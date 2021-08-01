@@ -7,9 +7,9 @@ const Wrap = styled.div`
     overflow-x: hidden;
 `;
 
-const ContentLayout = ({children, style}) => {
+const ContentLayout = ({children}) => {
     return (
-        <Wrap style={style}>
+        <Wrap>
             {children}
         </Wrap>
     )

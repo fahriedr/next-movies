@@ -9,6 +9,8 @@ import Banner from "../components/Banner";
 import { responseAPI } from "../utils/helpers/axios-helper";
 import { getNowPlayingMovies, getPopularMovies, getTopRatedMovies } from "../utils/api/movies";
 import CarouselMovies from "../components/CarouselMovies";
+import SkeletonBanner from "../components/Banner/SkeletonBanner";
+import Link from 'next/link'
 
 export default function Home({ children, deviceType }) {
 
@@ -64,7 +66,13 @@ export default function Home({ children, deviceType }) {
   return (
     <ContentLayout>
       <Seo title="Home" />
-      <Banner data={dataBanner}/>
+
+      { dataBanner ? (
+        <Banner data={dataBanner}/>
+      ) : (
+        <SkeletonBanner/>
+      ) }
+      
       <CarouselMovies
         title="Popular Movies"
         data={popularMovies}
@@ -83,6 +91,12 @@ export default function Home({ children, deviceType }) {
         style={ deviceType.mobile == true ? { margin: '35px 10px' } : { margin: '35px 60px'}}
         type={deviceType}
       />
+      <Link href={{
+        pathname: `/parent/[slug]`,
+        query: { slug: '1'}
+      }} as={`/parent`}>
+        About
+      </Link>
     </ContentLayout>
   );
 }
